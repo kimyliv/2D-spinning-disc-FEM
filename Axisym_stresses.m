@@ -1,11 +1,10 @@
-function [r_analytisk, sigmaR, sigmatheta,Sigma_r_element,Sigma_theta_element,rel_element] = Axisym_stresses(Konstanter,U,dr,nodes)
+function [r_analytic, sigmaR, sigmatheta,Sigma_r_element,Sigma_theta_element,rel_element] = Axisym_stresses(Constants,U,dr,nodes)
 
-Ri = Konstanter(1);
-Ry = Konstanter(2);
-N_element = Konstanter(3);
-nu = Konstanter(6);
-E_modul = Konstanter(7);
-
+Ri = Constants(1);
+Ry = Constants(2);
+N_element = Constants(3);
+nu = Constants(6);
+E_modul = Constants(7);
 
 sigmaR = zeros(1,N_element+1);
 sigmatheta = zeros(1,N_element+1);
@@ -13,11 +12,11 @@ Sigma_r_element = zeros(1,2*N_element);
 Sigma_theta_element = zeros(1,2*N_element);
 rel_element = zeros(1,2*N_element);
 
-rel_mid = linspace(Ri+dr/2,Ry-dr/2, N_element); % R värdet i mitten av varje element.
+rel_mid = linspace(Ri+dr/2,Ry-dr/2, N_element); % Radial value in middle of elements
 
 for index = 1:N_element
 
-    Umid = (U(index+1)+U(index))/2; % interpolerar värdet mellan varje element 
+    Umid = (U(index+1)+U(index))/2; % interpolates displacement between elements
 
     sigmavar_r = (U(index+1)-U(index))/dr + nu*(Umid/rel_mid(index));
     sigmaR(1,index) = sigmaR(1,index) + 0.5*sigmavar_r;
@@ -46,4 +45,4 @@ sigmatheta = E_modul/(1-nu^2).*sigmatheta;
 Sigma_r_element = E_modul/(1-nu^2).*Sigma_r_element;
 Sigma_theta_element = E_modul/(1-nu^2).*Sigma_theta_element;
 
-r_analytisk = linspace(Ri,Ry); % r varde for analytisk
+r_analytic = linspace(Ri,Ry); % radial value for analytic solution

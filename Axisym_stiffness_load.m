@@ -15,14 +15,7 @@ nodes = linspace(Ri, Ry, N_element + 1); % Node positions
 
 % Gauss points och weights
 gauss_points = [-1/sqrt(3) 1/sqrt(3)];
-% gauss_punkter = [-sqrt(3/5) 0 sqrt(3/5)];
-% gauss_punkter = [0];
 weights = [1 1];
-% vikter = [5/9 8/9 5/9];
-% vikter = [2];
-% gauss_punkter = [-sqrt(5 + 2*sqrt(10/7))/3, -sqrt(5 - 2*sqrt(10/7))/3, 0, sqrt(5 - 2*sqrt(10/7))/3, sqrt(5 + 2*sqrt(10/7))/3];
-% vikter = [(322 - 13*sqrt(70))/900, (322 + 13*sqrt(70))/900, 128/225, (322 + 13*sqrt(70))/900, (322 - 13*sqrt(70))/900];
-
 
 K = zeros(N_element + 1); % Global Stiffness
 F = zeros(N_element + 1, 1); % Global Force
